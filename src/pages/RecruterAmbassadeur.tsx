@@ -5,11 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useNavigate } from 'react-router-dom';
 import { toast } from '@/hooks/use-toast';
+import { useUserProfile } from '@/hooks/useUserProfile';
 
 const RecruterAmbassadeur = () => {
   const navigate = useNavigate();
-  const [referralCode] = useState('FRANCOISX');
-  const referralLink = `https://airlogis.app/join?ref=${referralCode}`;
+  const { profile } = useUserProfile();
+  
+  const referralCode = profile?.code_parrain || 'LOADING...';
+  const referralLink = `${window.location.origin}/auth?ref=${referralCode}`;
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(referralLink);
@@ -75,6 +78,7 @@ const RecruterAmbassadeur = () => {
                     variant="outline"
                     size="sm"
                     className="border-slate-600 text-white hover:bg-slate-700"
+                    disabled={referralCode === 'LOADING...'}
                   >
                     <Copy className="h-4 w-4" />
                   </Button>
@@ -94,6 +98,7 @@ const RecruterAmbassadeur = () => {
                     variant="outline"
                     size="sm"
                     className="border-slate-600 text-white hover:bg-slate-700"
+                    disabled={referralCode === 'LOADING...'}
                   >
                     <Copy className="h-4 w-4" />
                   </Button>
@@ -107,6 +112,7 @@ const RecruterAmbassadeur = () => {
             <Button
               onClick={shareViaWhatsApp}
               className="bg-green-600 hover:bg-green-700 text-white py-3"
+              disabled={referralCode === 'LOADING...'}
             >
               <Share2 className="h-4 w-4 mr-2" />
               WhatsApp
@@ -116,6 +122,7 @@ const RecruterAmbassadeur = () => {
               onClick={copyToClipboard}
               variant="outline"
               className="border-slate-600 text-white hover:bg-slate-700 py-3"
+              disabled={referralCode === 'LOADING...'}
             >
               <Copy className="h-4 w-4 mr-2" />
               Copier le lien

@@ -5,18 +5,31 @@ import LevelCard from '@/components/LevelCard';
 import MetricCard from '@/components/MetricCard';
 import ActionButton from '@/components/ActionButton';
 import { useNavigate } from 'react-router-dom';
+import { useUserProfile } from '@/hooks/useUserProfile';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { profile, isLoading } = useUserProfile();
 
-  // Données simulées
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-slate-900">
+        <Header />
+        <div className="container mx-auto px-4 py-8 text-center">
+          <div className="text-white text-lg">Chargement de votre profil...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Données par défaut si le profil n'est pas encore chargé
   const userData = {
-    currentLevel: 1,
-    currentXP: 0,
-    nextLevelXP: 100,
-    ambassadeursRecrutes: 0,
-    beneficesTotaux: 0,
-    biensVendus: 0
+    currentLevel: profile?.niveau || 1,
+    currentXP: profile?.xp || 0,
+    nextLevelXP: (profile?.niveau || 1) * 100,
+    ambassadeursRecrutes: profile?.ambassadeurs_recrutes || 0,
+    beneficesTotaux: profile?.benefices_totaux || 0,
+    biensVendus: profile?.biens_vendus || 0
   };
 
   return (

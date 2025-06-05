@@ -55,6 +55,62 @@ export type Database = {
           },
         ]
       }
+      profiles: {
+        Row: {
+          ambassadeurs_recrutes: number | null
+          benefices_totaux: number | null
+          biens_vendus: number | null
+          code_parrain: string | null
+          created_at: string | null
+          email: string
+          id: string
+          niveau: number | null
+          nom: string
+          parrain_id: string | null
+          telephone: string | null
+          updated_at: string | null
+          xp: number | null
+        }
+        Insert: {
+          ambassadeurs_recrutes?: number | null
+          benefices_totaux?: number | null
+          biens_vendus?: number | null
+          code_parrain?: string | null
+          created_at?: string | null
+          email: string
+          id: string
+          niveau?: number | null
+          nom: string
+          parrain_id?: string | null
+          telephone?: string | null
+          updated_at?: string | null
+          xp?: number | null
+        }
+        Update: {
+          ambassadeurs_recrutes?: number | null
+          benefices_totaux?: number | null
+          biens_vendus?: number | null
+          code_parrain?: string | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          niveau?: number | null
+          nom?: string
+          parrain_id?: string | null
+          telephone?: string | null
+          updated_at?: string | null
+          xp?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_parrain_id_fkey"
+            columns: ["parrain_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       recommandations: {
         Row: {
           code_postal: string
@@ -155,6 +211,45 @@ export type Database = {
             columns: ["parrain_id"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      referrals: {
+        Row: {
+          date_parrainage: string | null
+          filleul_id: string
+          id: string
+          parrain_id: string
+          statut: string | null
+        }
+        Insert: {
+          date_parrainage?: string | null
+          filleul_id: string
+          id?: string
+          parrain_id: string
+          statut?: string | null
+        }
+        Update: {
+          date_parrainage?: string | null
+          filleul_id?: string
+          id?: string
+          parrain_id?: string
+          statut?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "referrals_filleul_id_fkey"
+            columns: ["filleul_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referrals_parrain_id_fkey"
+            columns: ["parrain_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
