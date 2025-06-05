@@ -1,5 +1,5 @@
 
-import { Award } from 'lucide-react';
+import { Award, User } from 'lucide-react';
 
 interface LevelCardProps {
   currentLevel: number;
