@@ -106,6 +106,13 @@ export type Database = {
             foreignKeyName: "profiles_parrain_id_fkey"
             columns: ["parrain_id"]
             isOneToOne: false
+            referencedRelation: "classement_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_parrain_id_fkey"
+            columns: ["parrain_id"]
+            isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
@@ -242,7 +249,21 @@ export type Database = {
             foreignKeyName: "referrals_filleul_id_fkey"
             columns: ["filleul_id"]
             isOneToOne: false
+            referencedRelation: "classement_view"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referrals_filleul_id_fkey"
+            columns: ["filleul_id"]
+            isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "referrals_parrain_id_fkey"
+            columns: ["parrain_id"]
+            isOneToOne: false
+            referencedRelation: "classement_view"
             referencedColumns: ["id"]
           },
           {
@@ -297,6 +318,19 @@ export type Database = {
           niveau: number | null
           nom: string | null
           user_id: number | null
+          xp: number | null
+        }
+        Relationships: []
+      }
+      classement_view: {
+        Row: {
+          ambassadeurs_recrutes: number | null
+          benefices_totaux: number | null
+          biens_vendus: number | null
+          id: string | null
+          niveau: number | null
+          nom: string | null
+          rang: number | null
           xp: number | null
         }
         Relationships: []

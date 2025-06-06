@@ -20,8 +20,8 @@ const Auth = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="text-white text-lg">Chargement...</div>
+      <div className="min-h-screen bg-gray-50 dark:bg-slate-900 flex items-center justify-center">
+        <div className="text-gray-900 dark:text-white text-lg">Chargement...</div>
       </div>
     );
   }
